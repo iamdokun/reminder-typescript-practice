@@ -9,7 +9,9 @@ const AddReminder = ({ onAddReminder}: AddReminderProp) => {
 
 	const submitForm = (e: React.FormEvent) => {
 		e.preventDefault()
+		if (!title) return
 		onAddReminder(title)
+		setTitle("")
 	  }
   return (
     <form onSubmit={submitForm}>
