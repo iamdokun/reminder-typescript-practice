@@ -1,16 +1,27 @@
-import React from 'react'
-import Reminder from "../models/reminder"
+import React from "react";
+import Reminder from "../models/reminder";
 
 interface ReminderListProps {
-	items: Reminder[]
+  items: Reminder[];
+  onRemoveReminder: (id: number) => void;
 }
 
-const ReminderList = ({items}: ReminderListProps) => {
+const ReminderList = ({ items, onRemoveReminder }: ReminderListProps) => {
   return (
-	<ul>
-		{items?.map((item) => <li key={item.id}>{item.title}</li>)}
-	</ul>
-  )
-}
+    <ul className="list-group">
+      {items?.map((item) => (
+        <li className="list-group-item" key={item.id}>
+          {item.title}{" "}
+          <button
+            className="btn btn-outline-danger mx-2 rounded-pill"
+            onClick={() => onRemoveReminder(item.id)}
+          >
+            Delete
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-export default ReminderList
+export default ReminderList;
