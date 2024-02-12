@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import ReminderList from './component/reminder';
 import Reminder from './models/reminder';
 
-const reminderList : Reminder[] = [
-  {id: 1,
-  title: "Test"}
-]
+
 
 function App() {
+  const [reminder, setReminder] = useState<Reminder[]>([{id: 1,
+    title: "Test"}])
   return (
     <div className="App">
-      <ReminderList items={reminderList} />
+      <ReminderList items={reminder} />
     </div>
   );
 }
