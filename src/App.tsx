@@ -3,12 +3,15 @@ import './App.css';
 import ReminderList from './component/reminder';
 import Reminder from './models/reminder';
 import ReminderInstance from './services/reminder';
+import AddReminder from './component/addReminder';
 
 
 
 function App() {
   const [reminder, setReminder] = useState<Reminder[]>([{id: 1,
     title: "Test"}])
+
+
 
     useEffect(() => {
       loadReminderCall()
@@ -26,10 +29,15 @@ function App() {
       ReminderInstance.removeReminder(id)
     }
 
+    const submitReminder = async(title: string) => {
+      const res = await ReminderInstance.addReminder(title)
+      setReminder([res, ...reminder])
+    }
    
 
   return (
     <div className="App">
+      <AddReminder onAddReminder={submitReminder}/>
       <ReminderList items={reminder} onRemoveReminder={removeReminder} />
     </div>
   );
